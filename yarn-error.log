@@ -1,0 +1,53 @@
+Arguments: 
+  /Users/g/.nvm/versions/node/v18.19.0/bin/node /opt/homebrew/bin/yarn add @tensorflow-models/faceDetection
+
+PATH: 
+  /usr/local/mongodb/bin:/Users/g/.nvm/versions/node/v18.19.0/bin:/Library/Frameworks/Python.framework/Versions/3.12/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/Library/Apple/usr/bin:/usr/local/mongodb/bin:/Users/g/.nvm/versions/node/v18.19.0/bin:/Users/g/anaconda3/bin:/Users/g/anaconda3/condabin:/Library/Frameworks/Python.framework/Versions/3.12/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/Users/g/Library/Android/sdk/platform-tools:/Users/g/Library/Android/sdk/platform-tools
+
+Yarn version: 
+  1.22.19
+
+Node version: 
+  18.19.0
+
+Platform: 
+  darwin arm64
+
+Trace: 
+  Error: https://registry.npmmirror.com/@tensorflow-models%2ffaceDetection: Not found
+      at params.callback [as _callback] (/opt/homebrew/lib/node_modules/yarn/lib/cli.js:66145:18)
+      at self.callback (/opt/homebrew/lib/node_modules/yarn/lib/cli.js:140890:22)
+      at Request.emit (node:events:517:28)
+      at Request.<anonymous> (/opt/homebrew/lib/node_modules/yarn/lib/cli.js:141862:10)
+      at Request.emit (node:events:517:28)
+      at IncomingMessage.<anonymous> (/opt/homebrew/lib/node_modules/yarn/lib/cli.js:141784:12)
+      at Object.onceWrapper (node:events:631:28)
+      at IncomingMessage.emit (node:events:529:35)
+      at endReadableNT (node:internal/streams/readable:1400:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+
+npm manifest: 
+  {
+    "name": "ai",
+    "version": "1.0.0",
+    "main": "index.js",
+    "type": "module",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "",
+    "license": "ISC",
+    "keywords": [],
+    "description": "",
+    "dependencies": {
+      "@tensorflow-models/blazeface": "^0.1.0",
+      "@tensorflow-models/mobilenet": "^2.1.1",
+      "@tensorflow/tfjs": "^4.20.0"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

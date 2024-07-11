@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TensorFlow.js MobileNet Example</title>
+    <script src="https://unpkg.com/@tensorflow/tfjs@latest"></script>
+</head>
+<body>
+    <h1>TensorFlow.js MobileNet Example</h1>
+    <img id="image" src="./angry.jpg" alt="Sample Image" crossorigin="anonymous" onload="runModel()">
+    <script>
+        // 加载MobileNet模型
+        async function loadModel() {
+            try {
+                const model = await tf.loadGraphModel('https://tfhub.dev/google/tfjs-model/imagenet/mobilenet_v2_100_224/classification/3/default/1/model.json');
+                console.log('Model loaded');
+                return model;
+            } catch (error) {
+                console.error('Error loading model:', error);
+            }
+        }
+
+        // 加载ImageNet标签
+        async function loadLabels() {
+            try {
+                const response = await fetch('https://storage.googleapis.com/download.tensorflow.org/data/imagenet_class_index.json');
+                const labels = await response.json();
+                return labels;
+            } catch (error) {
+                console.error('Error loading labels:', error);
+            }
+        }
+
+        // 运行模型进行推理
+        async function runModel() {
+            const model = await loadModel();
+            const labels = await loadLabels();
+            const image = document.getElementById('image');
+
+            // Wait for the image to be fully loaded
+            image.onload = async () => {
+                const tensor = tf.browser.fromPixels(image)
+                    .resizeNearestNeighbor([224, 224])
+                    .toFloat()
+                    .expandDims();
+
+                const predictions = await model.predict(tensor).data();
+                const top5 = Array.from(predictions)
+                    .map((p, i) => ({ probability: p, className: labels[i] }))
+                    .sort((a, b) => b.probability - a.probability)
+                    .slice(0, 5);
+
+                console.log(top5);
+                top5.forEach(p => {
+                    console.log(`${p.className[1]}: ${p.probability.toFixed(6)}`);
+                });
+            };
+        }
+
+        // Initial runModel call if the image is already loaded
+        if (document.getElementById('image').complete) {
+            runModel();
+        }
+    </script>
+</body>
+</html>
